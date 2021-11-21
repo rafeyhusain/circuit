@@ -12,8 +12,10 @@ class Device {
     }
 
     stop() {
-        clearInterval(this.Timer)
-        this.Timer = null
+        if (this.Timer) {
+            clearInterval(this.Timer)
+            this.Timer = null
+        }
     }
 
     calculate() {

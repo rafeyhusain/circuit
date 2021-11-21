@@ -1,5 +1,6 @@
 const { Voltmeter } = require('./voltmeter')
 const { Ammeter } = require('./ammeter')
+const { Ohmmeter } = require('./ohmmeter')
 
 class Circuit {
     constructor(v, r1, r2, rl, t2) {
@@ -16,9 +17,10 @@ class Circuit {
         this.Timer = null
         this.Elapsed = 0
 
-        this.Ammeter = new Ammeter(this)
-        this.Voltmeter = new Voltmeter(this)
-
+        this.Ammeter = new Ammeter(this, 300)
+        this.Voltmeter = new Voltmeter(this, 100)
+        this.Ohmmeter = new Ohmmeter(this, 1000)
+        
         // events
         this._triggers = {}
     }
@@ -30,8 +32,9 @@ class Circuit {
 
         console.log("Starting Circuit...")
 
-        this.Voltmeter.start()
-        this.Ammeter.start()
+        //this.Voltmeter.start()
+        //this.Ammeter.start()
+        this.Ohmmeter.start()
 
         this.Timer = setInterval(() => {
             this.Elapsed += this.Interval
@@ -50,6 +53,7 @@ class Circuit {
 
         this.Voltmeter.stop()
         this.Ammeter.stop()
+        this.Ohmmeter.stop()
 
         clearInterval(this.Timer)
         this.Timer = null
