@@ -32,8 +32,8 @@ class Circuit {
 
         console.log("Starting Circuit...")
 
-        //this.Voltmeter.start()
-        //this.Ammeter.start()
+        this.Voltmeter.start()
+        this.Ammeter.start()
         this.Ohmmeter.start()
 
         this.Timer = setInterval(() => {
